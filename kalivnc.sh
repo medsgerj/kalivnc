@@ -75,7 +75,7 @@ echo "After=network.target" >> $vcs
 echo "" >> $vcs
 echo "[Service]" >> $vcs
 echo "Type=forking" >> $vcs
-echo "ExecStart=/usr/bin/vncserver :1 -localhost" >> $vcs
+echo "ExecStart=/usr/bin/vncserver :1" >> $vcs
 echo "ExecStop=/usr/bin/vncserver -kill :1" >> $vcs
 echo "User=vncserver" >> $vcs
 echo "" >> $vcs
