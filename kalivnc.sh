@@ -17,7 +17,6 @@ then
 	exit 1
 fi
 
-
 read -s -p "Enter a password for vnc access" vncaccess_pwd
 echo ""
 read -s -p "Confirm password: " vncaccess_pwd_confirm
