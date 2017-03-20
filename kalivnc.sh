@@ -13,9 +13,9 @@ echo "[*] Set a password for vncserver user:"
 passwd vncserver
 
 echo "[*] Set up vncserver for first time."
+rm -rf /home/vncserver/.vnc
 su - vncserver -c "/usr/bin/vncserver :1"
 vncserver -kill :1
-
 
 #echo "[*] Creating /home/vncserver/.vnc/."
 #vncdir=/home/vncserver/.vnc
