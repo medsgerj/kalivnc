@@ -12,23 +12,25 @@ useradd vncserver -m
 echo "[*] Set a password for vncserver user:"
 passwd vncserver
 
-echo "[*] Set up vncserver for first time."
-rm -rf /home/vncserver/.vnc
-su - vncserver -c "/usr/bin/vncserver :1"
-vncserver -kill :1
+#echo "[*] Set up vncserver for first time."
+#rm -rf /home/vncserver/.vnc
+#su - vncserver -c "/usr/bin/vncserver :1"
+#vncserver -kill :1
 
-#echo "[*] Creating /home/vncserver/.vnc/."
-#vncdir=/home/vncserver/.vnc
-#mkdir $vncdir
-#chown -R vncserver:vncserver $vncdir
+echo "[*] Creating /home/vncserver/.vnc/."
+vncdir=/home/vncserver/.vnc
+mkdir $vncdir
+chown -R vncserver:vncserver $vncdir
 
-#echo "[*] Copying passwd file."
-#cp /root/
+echo "[*] Setting passwd for vncserver."
+echo "test1234" | /usr/bin/vncpasswd -f > $vncdir/passwd
+chown -R vncserver:vncserver $vncdir/passwd
+chmod 600 $vncdir/passwd
 
-#echo "[*] Creating .Xresources file."
-#xresources=/home/vncserver/.Xresources
-#touch $xresources
-#chown vncserver:vncserver $xresources
+echo "[*] Creating .Xresources file."
+xresources=/home/vncserver/.Xresources
+touch $xresources
+chown vncserver:vncserver $xresources
 
 echo "[*] Creating .xstartup file."
 xstartup=/home/vncserver/.vnc/xstartup
