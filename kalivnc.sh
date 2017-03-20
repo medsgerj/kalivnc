@@ -6,11 +6,9 @@ then
 	exit 1
 fi
 
-printf "Enter a password for the vncserver user: "
-read -s vncserver_pwd
+read -s -p "Enter a password for the vncserver user: " vncserver_pwd
 echo ""
-print "Confirm password: "
-read -s vncserver_pwd_confirm
+read -s -p "Confirm password: " vncserver_pwd_confirm
 echo ""
 
 if [ $vncserver_pwd != $vncserver_pwd_confirm ]
@@ -19,11 +17,10 @@ then
 	exit 1
 fi
 
-printf "Enter a password for vnc access: "
-read -s vncaccess_pwd
+
+read -s -p "Enter a password for vnc access" vncaccess_pwd
 echo ""
-print "Confirm password: "
-read -s vncaccess_pwd_confirm
+read -s -p "Confirm password: " vncaccess_pwd_confirm
 echo ""
 
 if [ $vncaccess_pwd != $vncaccess_pwd_confirm ]
@@ -36,11 +33,11 @@ echo "[*] Adding vncserver user."
 useradd vncserver -m
 
 echo "[*] Set a password for vncserver user:"
-echo "$vncserver_pwd" | passwd vncserver --stdin
+echo "vncserver:$vncserver_pwd" | chpasswd
 
 echo "[*] Creating /home/vncserver/.vnc/."
 vncdir=/home/vncserver/.vnc
-mkdir $vncdir
+mkdir -p $vncdir
 chown -R vncserver:vncserver $vncdir
 
 echo "[*] Setting passwd for vncserver."
